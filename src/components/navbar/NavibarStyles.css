@@ -1,0 +1,28 @@
+.navbar {
+  align-items: center;
+}
+.logo {
+  width: 200px;
+  height: 40px;
+}
+
+.nav-link {
+  color: #c7a35d;
+}
+
+.input {
+  margin-top: 10px;
+  margin-left: 20px;
+  max-width: 400px;
+  max-height: 40px;
+  background-color: #212529;
+  color: white;
+}
+.input:focus {
+  outline: 2px ridge #c7a35d;
+  background-color: #212529;
+  color: white;
+}
+.input::placeholder {
+  color: #656565;
+}

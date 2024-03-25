@@ -1,0 +1,15 @@
+.main {
+  background-color: black;
+  height: 100vh;
+}
+.error {
+  color: rgb(90, 90, 90);
+}
+.container {
+  padding: 20px;
+}
+.container-title {
+  color: white;
+  font-weight: 600;
+  border-bottom: 1px solid #656565;
+}
