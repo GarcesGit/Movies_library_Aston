@@ -17,12 +17,17 @@ const MainPage = () => {
 
   return (
     <div className="main">
+      <p className="container_description">
+        Все новинки и классика кино на нашем сайте! Здесь можно найти информацию
+        о любом фильме и сериале!
+      </p>
+
       <div className="container container__prime">
-        <p className="container-title">Главное на PREMIER</p>
+        <p className="container_title">Главное на PREMIER</p>
         <SliderCarousel movies={movies} />
       </div>
       <div className="container container__serials">
-        <p className="container-title">Сериалы на PREMIER</p>
+        <p className="container_title">Сериалы на PREMIER</p>
       </div>
       {isLoading && <Loader />}
       {errorCode && <h3 className="error">Произошла ошибка при загрузке</h3>}
