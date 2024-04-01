@@ -1,5 +1,7 @@
 .navbar {
   align-items: center;
+  border-bottom: 1px solid #656565;
+  background-color: black;
 }
 .logo {
   width: 200px;
@@ -25,4 +27,6 @@
 }
 .input::placeholder {
   color: #656565;
+}
+.bg-dark {
 }

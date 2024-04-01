@@ -1,6 +1,6 @@
 import React from 'react';
 
-const Loader = () => {
+export const Loader = () => {
   return (
     <div>
       <button className="btn btn-dark" type="button" disabled>
@@ -14,5 +14,3 @@ const Loader = () => {
     </div>
   );
 };
-
-export default Loader;

@@ -1,7 +1,7 @@
 import { MovieType } from '../../types/ReduxTypes/MovieType';
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-interface MovieState {
+export interface MovieState {
   movies: MovieType[];
   isLoading: boolean;
   errorCode: string | null;
