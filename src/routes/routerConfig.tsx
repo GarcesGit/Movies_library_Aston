@@ -9,6 +9,7 @@ import { SearchPage } from '../pages/SearchPage/SearchPage';
 import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage';
 import { HistoryPage } from '../pages/HistoryPage/HistoryPage';
+import { ProtectedRoute } from '../components/ProtectedRoute';
 
 const router = createBrowserRouter([
   {
@@ -28,20 +29,25 @@ const router = createBrowserRouter([
         element: <SignupPage />,
       },
       {
-        path: ROUTES.SEARCH,
-        element: <SearchPage />,
-      },
-      {
-        path: ROUTES.FAVORITES,
-        element: <FavoritesPage />,
-      },
-      {
-        path: ROUTES.HISTORY,
-        element: <HistoryPage />,
-      },
-      {
         path: '*',
         element: <NotFoundPage />,
+      },
+      {
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: ROUTES.SEARCH,
+            element: <SearchPage />,
+          },
+          {
+            path: ROUTES.FAVORITES,
+            element: <FavoritesPage />,
+          },
+          {
+            path: ROUTES.HISTORY,
+            element: <HistoryPage />,
+          },
+        ],
       },
     ],
   },

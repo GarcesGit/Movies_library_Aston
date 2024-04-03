@@ -28,7 +28,7 @@ export const MainPage = () => {
         <p className="container_title">Главное на PREMIER</p>
         <SliderSwiperHOC movies={movies} />
       </div>
-      <div className="container container__serials">
+      <div className="container container__serials ">
         <p className="container_title">Сериалы на PREMIER</p>
         <SliderSwiperHOC movies={serials} />
       </div>

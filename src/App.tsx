@@ -9,7 +9,7 @@ type LayoutProps = {
   children: React.ReactNode;
 };
 
-const usersDB: Users = {
+const initialUsersDB: Users = {
   admin: { username: 'admin', password: 'admin' },
 };
 
@@ -55,7 +55,10 @@ const AuthProvider = ({ children }: LayoutProps) => {
 
 function App() {
   useEffect(() => {
-    localStorage.setItem('usersDB', JSON.stringify(usersDB));
+    const usersDB = getLocalStorageItem<Users>('usersDB');
+    if (!usersDB) {
+      localStorage.setItem('usersDB', JSON.stringify(initialUsersDB));
+    }
   }, []);
 
   return (
