@@ -5,6 +5,7 @@ import { ROUTES } from '../../routes/routes';
 import { useAuth } from '../../core/hooks';
 import './NavibarStyles.css';
 import logo from '../../assets/images/logo.jpg';
+import { NavbarInput } from '../navbarInput/NavbarInput';
 
 export const Navibar = () => {
   const { signOut, user } = useAuth();
@@ -42,13 +43,8 @@ export const Navibar = () => {
             </>
           )}
         </ul>
-        <input
-          className="form-control me-2"
-          type="search"
-          placeholder="Поиск"
-          aria-label="Search"
-        />
-        <ul className="navbar-nav me-auto mb-2 mb-lg-0">
+        <NavbarInput />
+        <ul className="navbar-nav me-auto mb-2 mb-lg-0 authorization">
           {!user ? (
             <>
               <li className="nav-item">

@@ -1,0 +1,26 @@
+.container_filmPage {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+.container_titles {
+  margin-top: 15px;
+}
+.container_titles p {
+  margin-bottom: 15px;
+  color: #c7a35d;
+  font-weight: 500;
+}
+.container_info {
+  max-width: 600px;
+  margin-left: 40px;
+}
+.container_info h2 {
+  margin-bottom: 20px;
+}
+.container_info div {
+  margin-bottom: 15px;
+}
+.container_poster {
+  margin-left: 50px;
+}

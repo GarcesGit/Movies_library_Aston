@@ -1,0 +1,37 @@
+.dropDown {
+  display: flex;
+  width: 250px;
+  height: 220px;
+  padding: 10px;
+  justify-content: start;
+  align-items: baseline;
+  border: 1px solid #cdcfd2;
+  border-radius: 5px;
+  background: #212529;
+  box-shadow: 1px 1px 20px #cdcfd2;
+  position: absolute;
+  top: 50px;
+  z-index: 3;
+}
+.dropDownContent {
+  display: block;
+  width: 230px;
+  height: 200px;
+  padding: 5px;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.dropDownContent::-webkit-scrollbar {
+  width: 5px;
+}
+.dropDownContent::-webkit-scrollbar-thumb {
+  background-color: #cdcfd2;
+  border-radius: 10px;
+}
+.dropDownItems {
+  display: block;
+  padding-top: 5px;
+  color: #dee2e6;
+  text-decoration: none;
+  cursor: pointer;
+}

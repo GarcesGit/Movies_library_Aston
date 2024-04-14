@@ -1,4 +1,6 @@
 import { useContext } from 'react';
-import { AuthContext } from '../contexts';
+import { AuthContext, FeatureFlagContext } from '../contexts';
 
 export const useAuth = () => useContext(AuthContext);
+
+export const useFeatureFlag = () => useContext(FeatureFlagContext);

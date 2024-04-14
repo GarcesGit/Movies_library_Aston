@@ -3,13 +3,17 @@
 }
 .history_title {
   margin-bottom: 30px;
+  color: white;
 }
-.history a {
+
+.history {
   margin-top: 20px;
   display: flex;
   justify-content: start;
   align-items: center;
-  cursor: pointer;
+}
+.history p {
+  margin-bottom: 0;
 }
 .history_image {
   margin-right: 10px;

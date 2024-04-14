@@ -1,12 +1,15 @@
 import { createContext } from 'react';
+import {
+  AuthContextType,
+  FeatureFlag,
+} from '../../types/contextTypes/contextTypes';
 
-import { SigninUser, SignupUser } from '../../types/SignTypes/signTypes';
+export const AuthContext = createContext<AuthContextType>(
+  {} as AuthContextType,
+);
 
-interface AuthContext {
-  user: SigninUser | null;
-  signIn: (userData: SigninUser) => void;
-  signOut: () => void;
-  signUp: (userData: SignupUser) => void;
-}
+const initialFeatureFlag: FeatureFlag = {
+  isTelegramShareEnabled: false,
+};
 
-export const AuthContext = createContext<AuthContext>({} as AuthContext);
+export const FeatureFlagContext = createContext(initialFeatureFlag);

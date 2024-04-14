@@ -13,11 +13,11 @@ To clone and run this application, you'll need Git and Node.js (which comes with
 $ git clone https://github.com/antliubimov/aston-react-project
 
 ## Project setup
-$ npm ci
+$ make install
 
 # Compiles and hot-reloads for development
-$ npm start
+$ make start
 
-# Compiles and minifies for production
-$ rm -rf build && npm run build
+# Compiles and run with feature server
+$ make start-feature
 ```

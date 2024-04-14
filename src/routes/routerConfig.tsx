@@ -10,6 +10,7 @@ import { NotFoundPage } from '../pages/NotFoundPage/NotFoundPage';
 import { FavoritesPage } from '../pages/FavoritesPage/FavoritesPage';
 import { HistoryPage } from '../pages/HistoryPage/HistoryPage';
 import { ProtectedRoute } from '../components/ProtectedRoute';
+import { FilmPage } from '../pages/FilmPage/FilmPage';
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: ROUTES.SIGNUP,
         element: <SignupPage />,
+      },
+      {
+        path: ROUTES.FILM,
+        element: <FilmPage />,
       },
       {
         path: '*',
