@@ -54,10 +54,11 @@ export const NavbarInput = () => {
   };
 
   const gotoSearchForm = (event: React.KeyboardEvent<HTMLInputElement>) => {
-    if (event.key === 'Enter') {
+    if (event.key === 'Enter' && navbarInputValue.length > 2) {
       setDropDown(false);
-      setNavbarInputValue('');
-      navigate(ROUTES.SEARCH);
+      navigate(`${ROUTES.SEARCH}?s=${navbarInputValue}`, {
+        state: { s: navbarInputValue },
+      });
     }
   };
 

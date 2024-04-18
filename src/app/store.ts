@@ -6,6 +6,7 @@ import FilmsToNavbarInputSlice from '../core/slices/navbarInputSlices/FilmsToNav
 import FilmPageSlice from '../core/slices/filmPageSlice/FilmPageSlice';
 import { favoritesReducer } from '../core/slices/favoritesSlice';
 import { favoritesListenerMiddleware } from '../core/middlewares/favoritesMiddleware';
+import searchPageSlice from '../core/slices/searchPageSlice/searchPageSlice';
 
 export const store = configureStore({
   reducer: {
@@ -15,6 +16,7 @@ export const store = configureStore({
     film: FilmPageSlice,
     favorites: favoritesReducer,
     [featureFlagApi.reducerPath]: featureFlagApi.reducer,
+    searchMovies: searchPageSlice,
   },
   middleware: (getDefaultMiddleware) =>
     getDefaultMiddleware().concat(

@@ -2,7 +2,7 @@ import React from 'react';
 
 export interface Search {
   title: string;
-  year: string;
+  year?: string;
 }
 
 export interface Film {

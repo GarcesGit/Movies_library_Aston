@@ -30,7 +30,6 @@ export const SearchInput = <T,>(props: SearchInputProps<T>) => {
         type={type}
         placeholder={label}
         autoComplete={currentName}
-        required
       />
       <label htmlFor={currentName}>{label}</label>
       <Form.Control.Feedback type="invalid" tooltip>
