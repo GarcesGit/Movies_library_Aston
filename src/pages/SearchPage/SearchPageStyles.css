@@ -1,4 +1,16 @@
-.search_container {
+.container_searchPage {
+  text-align: center;
+}
+.container_searchForm {
   align-items: flex-start;
-  margin-top: 30px;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+.container_searchMovies {
+  display: inline-block;
+  padding-left: 100px;
+  padding-right: 100px;
+}
+.container_searchPage img {
+  margin: 10px;
 }

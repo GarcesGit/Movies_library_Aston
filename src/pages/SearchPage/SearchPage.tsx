@@ -15,6 +15,7 @@ import {
   useNavigate,
   useNavigation,
   useParams,
+  useSearchParams,
 } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../core/hooks/hooks';
 import { fetchSearchMovies } from '../../core/slices/searchPageSlice/fetchSearchMovies';
@@ -34,20 +35,15 @@ const errors: Film = {
 
 export const SearchPage = () => {
   const [SearchData, setSearchData] = useState<Search>(initialState);
+  const [searchParams, setSearchParams] = useSearchParams();
   const filmNameRef = useRef<HTMLInputElement>(null);
   const dispatch = useAppDispatch();
   const { searchMovies, isLoading, errorCode } =
     useAppSelector(stateSearchMovies);
 
   const location = useLocation();
-  const navigate = useNavigate();
-  //вместо useNavigate useSearchParams как useState
-  //set SearchParam и вызывать setSearchParam? предать searchdatetitle
-  //см доки
   //если searchmovis есть отображать фильмы если нет то форма поиска
   //обработка ошибки поискового запроса
-
-  console.log(location);
 
   const getSearchString = (string: string) => {
     const queryArray = string.split('&');
@@ -83,44 +79,57 @@ export const SearchPage = () => {
     if (SearchData.title.length < 3) {
       return;
     }
-    navigate(`${ROUTES.SEARCH}?s=${SearchData.title}`, {
-      state: { s: SearchData.title },
-    });
+    // navigate(`${ROUTES.SEARCH}?s=${SearchData.title}`, {
+    //   state: { s: SearchData.title },
+    // });
+    setSearchParams(SearchData.title);
   }, []);
-
-  console.log(searchMovies);
 
   if (isLoading) {
     return <Loader />;
   }
 
+  console.log(searchParams);
+
   return (
     <>
-      <div>{JSON.stringify(searchMovies[0])}</div>
-      <SearchForm
-        title="Поиск"
-        imageSrc={searchImg}
-        btnName="Поиск"
-        onSubmit={handleSubmit}
-      >
-        <SearchInput
-          label="Название фильма"
-          name="title"
-          type="text"
-          data={SearchData}
-          setData={setSearchData}
-          errors={errors}
-          filmRef={filmNameRef}
-        />
-        <SearchInput
-          label="Год релиза"
-          name="year"
-          type="text"
-          data={SearchData}
-          setData={setSearchData}
-          errors={errors}
-        />
-      </SearchForm>
+      <div className="container_searchPage">
+        <SearchForm
+          title="Поиск"
+          imageSrc={searchImg}
+          btnName="Поиск"
+          onSubmit={handleSubmit}
+        >
+          <SearchInput
+            label="Название фильма"
+            name="title"
+            type="text"
+            data={SearchData}
+            setData={setSearchData}
+            errors={errors}
+            filmRef={filmNameRef}
+          />
+          <SearchInput
+            label="Год релиза"
+            name="year"
+            type="text"
+            data={SearchData}
+            setData={setSearchData}
+            errors={errors}
+          />
+        </SearchForm>
+        <div className="container_searchMovies">
+          {searchMovies.map((movie) => (
+            <img
+              key={movie.imdbID}
+              alt="poster"
+              src={movie.Poster}
+              className="image slider_image"
+              // onClick={() => onMovieClick(movie)}
+            />
+          ))}
+        </div>
+      </div>
     </>
   );
 };

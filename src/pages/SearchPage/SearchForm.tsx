@@ -13,7 +13,7 @@ export const SearchForm = memo((props: SearchFormProps) => {
   const { title, imageSrc, btnName, onSubmit, children } = props;
 
   return (
-    <main className="d-flex justify-content-center vh-100 search_container">
+    <main className="d-flex justify-content-center container_searchForm">
       <div className="d-flex w-75 justify-content-center align-items-center">
         <div className="w-25 m-3">
           <Image src={imageSrc} alt={title} fluid />
