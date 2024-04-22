@@ -59,6 +59,7 @@ export const NavbarInput = () => {
       navigate(`${ROUTES.SEARCH}?s=${navbarInputValue}`, {
         state: { s: navbarInputValue },
       });
+      setNavbarInputValue('');
     }
   };
 

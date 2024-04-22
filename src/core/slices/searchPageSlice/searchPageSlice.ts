@@ -25,12 +25,18 @@ export const searchPageSlice = createSlice({
     moviesFetching(state) {
       state.isLoading = true;
       state.errorCode = null;
+      state.searchMovies = [];
     },
     moviesFetchingError(state, action: PayloadAction<string>) {
       state.isLoading = false;
       state.errorCode = action.payload;
     },
+    clearSearchMoviesList(state) {
+      state.searchMovies = [];
+      state.errorCode = null;
+    },
   },
 });
 
+export const searchPageActions = searchPageSlice.actions;
 export default searchPageSlice.reducer;

@@ -3,7 +3,7 @@ import { Form } from 'react-bootstrap';
 import { SearchInputProps } from '../../types/SearchTypes/searchTypes';
 
 export const SearchInput = <T,>(props: SearchInputProps<T>) => {
-  const { label, name, type, data, setData, errors, filmRef } = props;
+  const { label, name, type, data, setData, filmRef } = props;
   const currentName = name as string;
 
   const handleChange = useCallback(
@@ -32,9 +32,7 @@ export const SearchInput = <T,>(props: SearchInputProps<T>) => {
         autoComplete={currentName}
       />
       <label htmlFor={currentName}>{label}</label>
-      <Form.Control.Feedback type="invalid" tooltip>
-        {errors[currentName]}
-      </Form.Control.Feedback>
+      <Form.Control.Feedback type="invalid" tooltip></Form.Control.Feedback>
     </Form.Group>
   );
 };
