@@ -22,5 +22,14 @@
   margin-bottom: 15px;
 }
 .container_poster {
+  position: relative;
   margin-left: 50px;
+  padding-top: 10px;
+}
+.favorite_image {
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  width: 25px;
+  height: 25px;
 }

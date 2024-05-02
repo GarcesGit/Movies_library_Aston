@@ -5,12 +5,12 @@ import React, {
   useRef,
   useState,
 } from 'react';
-import { Search, Film } from '../../types/SearchTypes/searchTypes';
+import { Search } from '../../types/SearchTypes/searchTypes';
 import searchImg from '../../assets/images/search.png';
 import { SearchInput } from './SearchInput';
 import { SearchForm } from './SearchForm';
 import './SearchPageStyles.css';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../core/hooks/hooks';
 import { fetchSearchMovies } from '../../core/slices/searchPageSlice/fetchSearchMovies';
 import { stateSearchMovies } from '../../core/selectors/selectors';
@@ -30,7 +30,6 @@ export const SearchPage = () => {
   const { searchMovies, isLoading, errorCode } =
     useAppSelector(stateSearchMovies);
   const { clearSearchMoviesList } = searchPageActions;
-  console.log(errorCode);
 
   const location = useLocation();
   const navigate = useNavigate();
@@ -63,9 +62,9 @@ export const SearchPage = () => {
       filmNameRef.current.focus();
     }
     return () => {
-      clearSearchMoviesList();
+      dispatch(clearSearchMoviesList());
     };
-  }, []);
+  }, [location]);
 
   const handleSubmit = useCallback(
     (e: SyntheticEvent<EventTarget>) => {
@@ -108,15 +107,22 @@ export const SearchPage = () => {
       {isLoading && <Loader />}
       {Boolean(searchMovies.length) && (
         <div className="container_searchMovies">
-          {searchMovies.map((movie) => (
-            <img
-              key={movie.imdbID}
-              alt="poster"
-              src={movie.Poster}
-              className="image slider_image"
-              // onClick={() => onMovieClick(movie)}
-            />
-          ))}
+          {searchMovies.map((movie) => {
+            return (
+              <Link
+                state={{ id: movie.imdbID }}
+                key={movie.imdbID}
+                to={`${ROUTES.FILM}?id=${movie.imdbID}`}
+              >
+                <img
+                  key={movie.imdbID}
+                  alt="poster"
+                  src={movie.Poster}
+                  className="image slider_image"
+                />
+              </Link>
+            );
+          })}
         </div>
       )}
       {errorCode && <h2 className="error">Фильм не найден</h2>}

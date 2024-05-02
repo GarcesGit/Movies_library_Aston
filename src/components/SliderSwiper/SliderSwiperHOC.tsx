@@ -13,7 +13,7 @@ type SliderSwiperHOCProps = {
 
 export const SliderSwiperHOC = ({ movies }: SliderSwiperHOCProps) => {
   const [modal, setModal] = useState(false);
-  const [activeMovie, setactiveMovie] = useState<MovieType>({} as MovieType);
+  const [activeMovie, setActiveMovie] = useState<MovieType>({} as MovieType);
 
   const handleModalClose = () => setModal(false);
 
@@ -37,7 +37,7 @@ export const SliderSwiperHOC = ({ movies }: SliderSwiperHOCProps) => {
   };
 
   const handleMovieClick = useCallback((movie: MovieType) => {
-    setactiveMovie(movie);
+    setActiveMovie(movie);
     saveToLocalStorage(movie);
     setModal(true);
   }, []);

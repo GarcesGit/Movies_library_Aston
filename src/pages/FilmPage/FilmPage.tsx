@@ -1,16 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../core/hooks/hooks';
 import { stateFilmByID } from '../../core/selectors/selectors';
 import './FilmPageStyles.css';
 import { useLocation } from 'react-router-dom';
 import { fetchFilmByID } from '../../core/slices/filmPageSlice/FetchFilmByID';
 import { Loader } from '../../components/loader/Loader';
+import grey_heart from '../../assets/images/grey_heart.png';
+import red_heart from '../../assets/images/red_heart.png';
 
 export const FilmPage = () => {
   const dispatch = useAppDispatch();
   const { film, isLoading, errorCode } = useAppSelector(stateFilmByID);
-
   const { state } = useLocation();
+  const [favorite, setFavorite] = useState(false);
 
   useEffect(() => {
     if (state.id) {
@@ -22,6 +24,15 @@ export const FilmPage = () => {
   if (isLoading) {
     return <Loader />;
   }
+
+  // переделать проверяем есть ли фильм в массиве - add/remove // см favoritesSlice
+  const onFavoriteClick = () => {
+    if (favorite) {
+      setFavorite(false);
+      return;
+    }
+    setFavorite(true);
+  };
 
   return (
     <div>
@@ -54,6 +65,13 @@ export const FilmPage = () => {
         </div>
         <div className="container_poster">
           <img alt="poster" src={film.Poster} className="image" />
+          <button onClick={() => onFavoriteClick()}>
+            <img
+              src={favorite ? red_heart : grey_heart}
+              alt="favorite_image"
+              className="favorite_image"
+            />
+          </button>
         </div>
       </div>
       {isLoading && <Loader />}
