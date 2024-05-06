@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../core/hooks/hooks';
 import { stateFilmByID } from '../../core/selectors/selectors';
 import './FilmPageStyles.css';
@@ -7,12 +7,16 @@ import { fetchFilmByID } from '../../core/slices/filmPageSlice/FetchFilmByID';
 import { Loader } from '../../components/loader/Loader';
 import grey_heart from '../../assets/images/grey_heart.png';
 import red_heart from '../../assets/images/red_heart.png';
+import { addFavorite, removeFavorite } from '../../core/slices/favoritesSlice';
+import { AuthContext } from '../../core/contexts';
 
 export const FilmPage = () => {
+  const { user } = useContext(AuthContext);
   const dispatch = useAppDispatch();
   const { film, isLoading, errorCode } = useAppSelector(stateFilmByID);
   const { state } = useLocation();
   const [favorite, setFavorite] = useState(false);
+  const { favorites } = useAppSelector((state) => state.favorites);
 
   useEffect(() => {
     if (state.id) {
@@ -21,17 +25,30 @@ export const FilmPage = () => {
     }
   }, [state.id]);
 
+  useEffect(() => {
+    const isFilmInFavorites = favorites.find(
+      (favoriteFilm) => favoriteFilm.imdbID === film.imdbID,
+    );
+    if (isFilmInFavorites) {
+      setFavorite(true);
+      return;
+    }
+    setFavorite(false);
+  }, [favorites]);
+
   if (isLoading) {
     return <Loader />;
   }
 
-  // переделать проверяем есть ли фильм в массиве - add/remove // см favoritesSlice
   const onFavoriteClick = () => {
-    if (favorite) {
-      setFavorite(false);
+    if (!user) {
       return;
     }
-    setFavorite(true);
+    if (favorite) {
+      dispatch(removeFavorite({ ...film, userId: user?.username }));
+      return;
+    }
+    dispatch(addFavorite({ ...film, userId: user?.username }));
   };
 
   return (

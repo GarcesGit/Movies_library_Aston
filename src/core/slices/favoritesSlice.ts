@@ -3,7 +3,9 @@ import { FavoriteState, FavoriteType } from '../../types/ReduxTypes/MovieType';
 import { getLocalStorageItem } from '../../utils/helpers/localStorageFns';
 import { FAVORITES } from '../../utils/constants/constants';
 
-const favoritesItems: FavoriteType[] = getLocalStorageItem(FAVORITES) || [];
+const favoritesItems: FavoriteType[] =
+  getLocalStorageItem(FAVORITES)?.favorites || [];
+//где сетается в LocalStorage?? форматы поправить {}[]
 
 const initialState: FavoriteState = {
   favorites: favoritesItems,
@@ -14,7 +16,7 @@ const favoritesSlice = createSlice({
   initialState,
   reducers: {
     addFavorite: (state, action: PayloadAction<FavoriteType>) => {
-      state.favorites.push(action.payload);
+      state.favorites = [...state.favorites, action.payload];
     },
     removeFavorite: (state, action: PayloadAction<FavoriteType>) => {
       state.favorites = state.favorites.filter((movie) => {
@@ -30,4 +32,4 @@ const favoritesSlice = createSlice({
 });
 
 export const { addFavorite, removeFavorite } = favoritesSlice.actions;
-export const favoritesReducer = favoritesSlice.reducer;
+export default favoritesSlice.reducer;

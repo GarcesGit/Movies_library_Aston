@@ -26,11 +26,11 @@ export const MainPage = () => {
       </p>
       <div className="container container__prime">
         <p className="container_title">Главное на PREMIER</p>
-        <SliderSwiperHOC movies={movies} />
+        {Boolean(movies.length) && <SliderSwiperHOC movies={movies} />}
       </div>
       <div className="container container__serials ">
         <p className="container_title">Сериалы на PREMIER</p>
-        <SliderSwiperHOC movies={serials} />
+        {Boolean(serials.length) && <SliderSwiperHOC movies={serials} />}
       </div>
       {isLoading || (isLoadingSerials && <Loader />)}
       {errorCode ||

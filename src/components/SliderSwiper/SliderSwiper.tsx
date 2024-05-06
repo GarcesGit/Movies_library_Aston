@@ -39,8 +39,9 @@ const SliderSwiper = ({
         pagination={{
           clickable: true,
         }}
-        navigation={true}
-        observer={true}
+        navigation
+        observer
+        loop
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.imdbID}>

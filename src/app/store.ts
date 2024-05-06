@@ -4,7 +4,7 @@ import { featureFlagApi } from '../core/api/featureFlagApi';
 import SerialsSlice from '../core/slices/SerialsSlice';
 import FilmsToNavbarInputSlice from '../core/slices/navbarInputSlices/FilmsToNavbarInputSlice';
 import FilmPageSlice from '../core/slices/filmPageSlice/FilmPageSlice';
-import { favoritesReducer } from '../core/slices/favoritesSlice';
+import favoritesSlice from '../core/slices/favoritesSlice';
 import { favoritesListenerMiddleware } from '../core/middlewares/favoritesMiddleware';
 import searchPageSlice from '../core/slices/searchPageSlice/searchPageSlice';
 
@@ -14,7 +14,7 @@ export const store = configureStore({
     serials: SerialsSlice,
     filmsToNavbarInput: FilmsToNavbarInputSlice,
     film: FilmPageSlice,
-    favorites: favoritesReducer,
+    favorites: favoritesSlice,
     [featureFlagApi.reducerPath]: featureFlagApi.reducer,
     searchMovies: searchPageSlice,
   },
