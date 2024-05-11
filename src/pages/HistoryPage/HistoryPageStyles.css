@@ -1,24 +1,29 @@
 .container_history {
   margin: 20px;
 }
-.history_title {
-  margin-bottom: 30px;
-  color: white;
+.container_history a {
+  text-decoration: none;
 }
-
+.title {
+  margin-bottom: 30px;
+}
 .history {
+  margin-left: 300px;
   margin-top: 20px;
   display: flex;
   justify-content: start;
   align-items: center;
 }
-.history p {
+.history_title {
+  margin-left: 10px;
   margin-bottom: 0;
+  color: white;
+  font-size: 20px;
 }
 .history_image {
   margin-right: 10px;
-  width: 35px;
-  height: 48px;
+  width: 63px;
+  height: 95px;
   padding: 2px;
   border: 1px solid white;
   border-radius: 5px;

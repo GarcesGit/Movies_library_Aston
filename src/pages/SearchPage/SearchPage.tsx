@@ -17,6 +17,7 @@ import { stateSearchMovies } from '../../core/selectors/selectors';
 import { Loader } from '../../components/loader/Loader';
 import { ROUTES } from '../../routes/routes';
 import { searchPageActions } from '../../core/slices/searchPageSlice/searchPageSlice';
+import noPhoto from '../../assets/images/noPhoto.jpg';
 
 const initialState: Search = {
   title: '',
@@ -117,8 +118,9 @@ export const SearchPage = () => {
                 <img
                   key={movie.imdbID}
                   alt="poster"
-                  src={movie.Poster}
+                  src={movie.Poster === 'N/A' ? noPhoto : movie.Poster}
                   className="image slider_image"
+                  // onClick={() => handleMovieClick(movie)}
                 />
               </Link>
             );

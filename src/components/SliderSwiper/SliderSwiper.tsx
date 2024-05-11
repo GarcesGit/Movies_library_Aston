@@ -6,23 +6,16 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 import 'swiper/css/navigation';
 import './SliderSwiperStyles.css';
-import { Modal } from '../Modal/Modal';
+import noPhoto from '../../assets/images/noPhoto.jpg';
+import { ROUTES } from '../../routes/routes';
+import { Link } from 'react-router-dom';
 
 type SliderSwiperProps = {
   movies: MovieType[];
-  activeMovie: MovieType;
   onMovieClick: (movie: MovieType) => void;
-  isModalOpen: boolean;
-  handleModalClose: () => void;
 };
 
-const SliderSwiper = ({
-  movies,
-  activeMovie,
-  onMovieClick,
-  isModalOpen,
-  handleModalClose,
-}: SliderSwiperProps) => {
+const SliderSwiper = ({ movies, onMovieClick }: SliderSwiperProps) => {
   return (
     <div className="slider">
       <Swiper
@@ -45,26 +38,21 @@ const SliderSwiper = ({
       >
         {movies.map((movie) => (
           <SwiperSlide key={movie.imdbID}>
-            <img
-              alt="poster"
-              src={movie.Poster}
-              className="image slider_image"
-              onClick={() => onMovieClick(movie)}
-            />
+            <Link
+              state={{ id: movie.imdbID }}
+              key={movie.imdbID}
+              to={`${ROUTES.FILM}?id=${movie.imdbID}`}
+            >
+              <img
+                alt="poster"
+                src={movie.Poster === 'N/A' ? noPhoto : movie.Poster}
+                className="image slider_image"
+                onClick={() => onMovieClick(movie)}
+              />
+            </Link>
           </SwiperSlide>
         ))}
       </Swiper>
-      <Modal visible={isModalOpen} setVisible={handleModalClose}>
-        <div>
-          <div>
-            <img alt="poster" src={activeMovie.Poster} className="image" />
-          </div>
-          <div>
-            <p>Название: {activeMovie.Title}</p>
-            <p>Год: {activeMovie.Year}</p>
-          </div>
-        </div>
-      </Modal>
     </div>
   );
 };

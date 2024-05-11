@@ -1,14 +1,15 @@
-import React, { useCallback, useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { useAppDispatch, useAppSelector } from '../../core/hooks/hooks';
 import { stateFilmByID } from '../../core/selectors/selectors';
 import './FilmPageStyles.css';
 import { useLocation } from 'react-router-dom';
 import { fetchFilmByID } from '../../core/slices/filmPageSlice/FetchFilmByID';
 import { Loader } from '../../components/loader/Loader';
-import grey_heart from '../../assets/images/grey_heart.png';
+import black_heart from '../../assets/images/black_heart.png';
 import red_heart from '../../assets/images/red_heart.png';
 import { addFavorite, removeFavorite } from '../../core/slices/favoritesSlice';
 import { AuthContext } from '../../core/contexts';
+import noPhoto from '../../assets/images/noPhoto.jpg';
 
 export const FilmPage = () => {
   const { user } = useContext(AuthContext);
@@ -29,12 +30,13 @@ export const FilmPage = () => {
     const isFilmInFavorites = favorites.find(
       (favoriteFilm) => favoriteFilm.imdbID === film.imdbID,
     );
+
     if (isFilmInFavorites) {
       setFavorite(true);
       return;
     }
     setFavorite(false);
-  }, [favorites]);
+  }, [favorites, film]);
 
   if (isLoading) {
     return <Loader />;
@@ -81,10 +83,17 @@ export const FilmPage = () => {
           <div>{film.Plot}</div>
         </div>
         <div className="container_poster">
-          <img alt="poster" src={film.Poster} className="image" />
-          <button onClick={() => onFavoriteClick()}>
+          <img
+            alt="poster"
+            src={film.Poster === 'N/A' ? noPhoto : film.Poster}
+            className="image"
+          />
+          <button
+            className="container_favorite_image"
+            onClick={() => onFavoriteClick()}
+          >
             <img
-              src={favorite ? red_heart : grey_heart}
+              src={favorite ? red_heart : black_heart}
               alt="favorite_image"
               className="favorite_image"
             />

@@ -1,0 +1,13 @@
+.container_favorite_film {
+  position: relative;
+  display: flex;
+}
+
+.container_favorite_image {
+  position: absolute;
+  z-index: 1;
+}
+
+.link_to_film {
+  position: relative;
+}

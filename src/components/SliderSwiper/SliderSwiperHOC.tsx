@@ -12,11 +12,6 @@ type SliderSwiperHOCProps = {
 };
 
 export const SliderSwiperHOC = ({ movies }: SliderSwiperHOCProps) => {
-  const [modal, setModal] = useState(false);
-  const [activeMovie, setActiveMovie] = useState<MovieType>({} as MovieType);
-
-  const handleModalClose = () => setModal(false);
-
   const saveToLocalStorage = (film: MovieType) => {
     let historyMoviesArray: MovieType[] = [];
     const moviesFromLS = localStorage.getItem(HISTORY_KEY);
@@ -37,18 +32,10 @@ export const SliderSwiperHOC = ({ movies }: SliderSwiperHOCProps) => {
   };
 
   const handleMovieClick = useCallback((movie: MovieType) => {
-    setActiveMovie(movie);
     saveToLocalStorage(movie);
-    setModal(true);
   }, []);
 
   return (
-    <MemoizedSliderSwiper
-      activeMovie={activeMovie}
-      movies={movies}
-      onMovieClick={handleMovieClick}
-      isModalOpen={modal}
-      handleModalClose={handleModalClose}
-    />
+    <MemoizedSliderSwiper movies={movies} onMovieClick={handleMovieClick} />
   );
 };

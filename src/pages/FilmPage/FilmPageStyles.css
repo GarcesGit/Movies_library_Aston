@@ -14,6 +14,7 @@
 .container_info {
   max-width: 600px;
   margin-left: 40px;
+  margin-right: 70px;
 }
 .container_info h2 {
   margin-bottom: 20px;
@@ -23,13 +24,22 @@
 }
 .container_poster {
   position: relative;
-  margin-left: 50px;
-  padding-top: 10px;
+}
+.container_favorite_image {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 33px;
+  height: 34px;
+  border-radius: 5px;
+  z-index: 1;
+  background-color: rgba(255, 255, 255, 0.5);
 }
 .favorite_image {
   position: absolute;
-  top: 20px;
-  right: 10px;
+  top: 3px;
+  right: 2px;
   width: 25px;
   height: 25px;
+  z-index: 2;
 }
