@@ -1,6 +1,5 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import movieSlice from '../core/slices/MovieSlice';
-import { featureFlagApi } from '../core/api/featureFlagApi';
 import SerialsSlice from '../core/slices/SerialsSlice';
 import FilmsToNavbarInputSlice from '../core/slices/navbarInputSlices/FilmsToNavbarInputSlice';
 import FilmPageSlice from '../core/slices/filmPageSlice/FilmPageSlice';
@@ -15,14 +14,10 @@ export const store = configureStore({
     filmsToNavbarInput: FilmsToNavbarInputSlice,
     film: FilmPageSlice,
     favorites: favoritesSlice,
-    [featureFlagApi.reducerPath]: featureFlagApi.reducer,
     searchMovies: searchPageSlice,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(
-      featureFlagApi.middleware,
-      favoritesListenerMiddleware.middleware,
-    ),
+    getDefaultMiddleware().concat(favoritesListenerMiddleware.middleware),
 });
 
 export type AppDispatch = typeof store.dispatch;

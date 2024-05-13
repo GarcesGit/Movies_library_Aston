@@ -1,6 +1,6 @@
 import React, { memo } from 'react';
 import { MovieType } from '../../types/ReduxTypes/MovieType';
-import { Swiper, SwiperSlide, useSwiper } from 'swiper/react';
+import { Swiper, SwiperSlide } from 'swiper/react';
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
@@ -12,10 +12,9 @@ import { Link } from 'react-router-dom';
 
 type SliderSwiperProps = {
   movies: MovieType[];
-  onMovieClick: (movie: MovieType) => void;
 };
 
-const SliderSwiper = ({ movies, onMovieClick }: SliderSwiperProps) => {
+const SliderSwiper = ({ movies }: SliderSwiperProps) => {
   return (
     <div className="slider">
       <Swiper
@@ -47,7 +46,6 @@ const SliderSwiper = ({ movies, onMovieClick }: SliderSwiperProps) => {
                 alt="poster"
                 src={movie.Poster === 'N/A' ? noPhoto : movie.Poster}
                 className="image slider_image"
-                onClick={() => onMovieClick(movie)}
               />
             </Link>
           </SwiperSlide>

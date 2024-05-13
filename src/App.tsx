@@ -2,7 +2,6 @@ import React, { useEffect } from 'react';
 import RouterConfig from './routes/routerConfig';
 import { Users } from './types/SignTypes/signTypes';
 import { AuthProvider } from './core/providers/authProvider';
-import { FeatureFlagProvider } from './core/providers/featureFlagProvider';
 import {
   getLocalStorageItem,
   setLocalStorageItem,
@@ -24,11 +23,9 @@ function App() {
 
   return (
     <AuthProvider>
-      <FeatureFlagProvider>
-        <div className="App">
-          <RouterConfig />
-        </div>
-      </FeatureFlagProvider>
+      <div className="App">
+        <RouterConfig />
+      </div>
     </AuthProvider>
   );
 }

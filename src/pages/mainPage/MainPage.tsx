@@ -5,7 +5,7 @@ import './MainPageStyles.css';
 import { Loader } from '../../components/loader/Loader';
 import { fetchSerials } from '../../core/slices/FetchSerials';
 import { stateMovies, stateSerials } from '../../core/selectors/selectors';
-import { SliderSwiperHOC } from '../../components/SliderSwiper/SliderSwiperHOC';
+import { MemoizedSliderSwiper } from '../../components/SliderSwiper/SliderSwiper';
 
 export const MainPage = () => {
   const dispatch = useAppDispatch();
@@ -26,11 +26,11 @@ export const MainPage = () => {
       </p>
       <div className="container container__prime">
         <p className="container_title">Главное на PREMIER</p>
-        {Boolean(movies.length) && <SliderSwiperHOC movies={movies} />}
+        {Boolean(movies.length) && <MemoizedSliderSwiper movies={movies} />}
       </div>
       <div className="container container__serials ">
         <p className="container_title">Сериалы на PREMIER</p>
-        {Boolean(serials.length) && <SliderSwiperHOC movies={serials} />}
+        {Boolean(serials.length) && <MemoizedSliderSwiper movies={serials} />}
       </div>
       {isLoading || (isLoadingSerials && <Loader />)}
       {errorCode ||

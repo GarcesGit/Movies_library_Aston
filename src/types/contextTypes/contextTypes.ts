@@ -6,7 +6,3 @@ export type AuthContextType = {
   signOut: () => void;
   signUp: (userData: SignupUser) => void;
 };
-
-export type FeatureFlag = {
-  isTelegramShareEnabled: boolean;
-};

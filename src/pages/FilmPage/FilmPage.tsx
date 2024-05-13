@@ -10,12 +10,16 @@ import red_heart from '../../assets/images/red_heart.png';
 import { addFavorite, removeFavorite } from '../../core/slices/favoritesSlice';
 import { AuthContext } from '../../core/contexts';
 import noPhoto from '../../assets/images/noPhoto.jpg';
+import { MovieType } from '../../types/ReduxTypes/MovieType';
+import { HISTORY_KEY } from '../../utils/constants/constants';
+import telegram from '../../assets/images/telegram.png';
 
 export const FilmPage = () => {
   const { user } = useContext(AuthContext);
   const dispatch = useAppDispatch();
   const { film, isLoading, errorCode } = useAppSelector(stateFilmByID);
   const { state } = useLocation();
+  const fullUrl = window.location.href;
   const [favorite, setFavorite] = useState(false);
   const { favorites } = useAppSelector((state) => state.favorites);
 
@@ -38,6 +42,13 @@ export const FilmPage = () => {
     setFavorite(false);
   }, [favorites, film]);
 
+  useEffect(() => {
+    if (!film.imdbID) {
+      return;
+    }
+    saveToLocalStorage(film);
+  }, [film]);
+
   if (isLoading) {
     return <Loader />;
   }
@@ -51,6 +62,26 @@ export const FilmPage = () => {
       return;
     }
     dispatch(addFavorite({ ...film, userId: user?.username }));
+  };
+
+  const saveToLocalStorage = (film: MovieType) => {
+    let historyMoviesArray: MovieType[] = [];
+    const moviesFromLS = localStorage.getItem(HISTORY_KEY);
+
+    if (!moviesFromLS) {
+      historyMoviesArray.push(film);
+      localStorage.setItem(HISTORY_KEY, JSON.stringify(historyMoviesArray));
+      return;
+    }
+    const parsedMovies: MovieType[] = JSON.parse(moviesFromLS);
+    const isMovieExistsInLS = parsedMovies.find(
+      (movie) => movie.imdbID === film.imdbID,
+    );
+    if (isMovieExistsInLS) {
+      return;
+    }
+    historyMoviesArray = [...parsedMovies, film];
+    localStorage.setItem(HISTORY_KEY, JSON.stringify(historyMoviesArray));
   };
 
   return (
@@ -97,6 +128,19 @@ export const FilmPage = () => {
               alt="favorite_image"
               className="favorite_image"
             />
+          </button>
+          <button className="container_favorite_image container_share_image">
+            <a
+              href={`https://t.me/share/url?url=${fullUrl}&text=${'Смотри какой фильм'}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img
+                src={telegram}
+                alt="telegram_image"
+                className="favorite_image telegram_image"
+              />
+            </a>
           </button>
         </div>
       </div>

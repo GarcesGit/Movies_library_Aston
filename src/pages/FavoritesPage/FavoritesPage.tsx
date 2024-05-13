@@ -15,14 +15,11 @@ export const FavoritesPage = () => {
   const dispatch = useAppDispatch();
   const { user } = useAuth();
 
-  const handleRemoveFavorite = useCallback(
-    (movie: MovieType) => () => {
-      if (user) {
-        dispatch(removeFavorite({ ...movie, userId: user?.username }));
-      }
-    },
-    [dispatch, favorites, user],
-  );
+  const handleRemoveFavorite = (movie: MovieType) => {
+    if (user) {
+      dispatch(removeFavorite({ ...movie, userId: user?.username }));
+    }
+  };
 
   return (
     <main className="m-3 vh-100">

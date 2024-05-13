@@ -120,7 +120,6 @@ export const SearchPage = () => {
                   alt="poster"
                   src={movie.Poster === 'N/A' ? noPhoto : movie.Poster}
                   className="image slider_image"
-                  // onClick={() => handleMovieClick(movie)}
                 />
               </Link>
             );

@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './HistoryPageStyles.css';
 import { MovieType } from '../../types/ReduxTypes/MovieType';
-import { HISTORY_KEY } from '../../utils/constants';
+import { HISTORY_KEY } from '../../utils/constants/constants';
 import { Link } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
 
